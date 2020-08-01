@@ -39,10 +39,11 @@ public class OrderEntity implements Serializable{
 	
 	protected OrderEntity() {}
 	
-	public OrderEntity(String customerName, String shippingAddress, int totalPrice) {
+	public OrderEntity(String customerName, String shippingAddress, int totalPrice,Date orderDate) {
 		this.customerName = customerName;
 		this.shippingAddress = shippingAddress;
 		this.totalPrice = totalPrice;
+		this.orderDate=orderDate;
 	}
 	public Integer getOrderId() {
 		return orderId;

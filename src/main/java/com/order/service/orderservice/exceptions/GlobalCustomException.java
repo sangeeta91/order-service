@@ -1,23 +1,23 @@
 package com.order.service.orderservice.exceptions;
 
-import org.springframework.http.HttpHeaders;
+import java.time.LocalDateTime;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalCustomException extends ResponseEntityExceptionHandler{
-	
-	@Override
-	@ExceptionHandler(NoHandlerFoundException.class)
-	protected ResponseEntity<Object> handleNoHandlerFoundException(
-			NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		return handleExceptionInternal(ex, null, headers, status, request);
+	@ExceptionHandler(OrderNotFoundException.class)
+	protected ResponseEntity<Object> handleNoOrderFoundException(OrderNotFoundException ex) {
+		CustomErrorResponse error = new CustomErrorResponse("NOT_FOUND_ERROR", ex.getMessage());
+		error.setTimestamp(LocalDateTime.now());
+		error.setStatus((HttpStatus.NOT_FOUND.value()));
+		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+
 	}
 
 }

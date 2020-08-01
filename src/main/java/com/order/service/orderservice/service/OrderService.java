@@ -5,7 +5,7 @@ import com.order.service.orderservice.response.dtos.OrderResponseDto;
 
 public interface OrderService {
   
-	public int insertOrderDetails(OrderRequestDto orderRequestDto) throws Exception;
+	public int insertOrderDetails(OrderRequestDto orderRequestDto);
 	
-	public OrderResponseDto getOrderItemDetails(int orderId) throws Exception;
+	public OrderResponseDto getOrderItemDetails(int orderId);
 }

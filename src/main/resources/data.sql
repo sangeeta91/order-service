@@ -5,6 +5,6 @@ CREATE TABLE order_tbl (
   customer_name VARCHAR(250) NOT NULL,
   shipping_address VARCHAR(250) NOT NULL,
   total_price INT NOT NULL,
-  order_date DATE default SYSDATE,
+  order_date date default sysdate,
   PRIMARY KEY(order_id)
   );
